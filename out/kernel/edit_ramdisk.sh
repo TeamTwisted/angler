@@ -46,12 +46,15 @@ fi
 if  grep -qr verify=/dev/block/platform/msm_sdcc.1/by-name/metadata /tmp/ramdisk/fstab.angler; then
    sed -i "s/\,verify\=\/dev\/block\/platform\/msm_sdcc\.1\/by\-name\/metadata//" /tmp/ramdisk/fstab.angler
 fi
-rm /tmp/ramdisk/verity_key
 
-rm /tmp/ramdisk/boot.img-ramdisk.gz
+chmod 777 /tmp/ramdisk/boot.img-ramdisk.gz
+rm -r /tmp/ramdisk/verity_key
+chmod 777 /tmp/ramdisk/boot.img-ramdisk.gz
+rm -r /tmp/ramdisk/boot.img-ramdisk.gz
 rm /tmp/boot.img-ramdisk.gz
 cd /tmp/ramdisk/
 find . | cpio -o -H newc | gzip > ../boot.img-ramdisk.gz
 cd /
 rm -rf /tmp/ramdisk
+
 
