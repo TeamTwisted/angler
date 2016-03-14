@@ -15,7 +15,7 @@ DTBIMAGE="dtb"
 DEFCONFIG="kylo_defconfig"
 
 # Kernel Details
-VER=".R48.angler."
+VER=".R57.angler."
 
 # Paths
 KERNEL_DIR=`pwd`
@@ -77,7 +77,7 @@ echo "Making Kylo Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 
-while read -p "Do you want to use UBERTC 4.9(1) or UBERTC 5.3(2)? " echoice
+while read -p "Do you want to use UBERTC(1-3) or Linaro(4-6)? " echoice
 do
 case "$echoice" in
 	1 )
@@ -95,24 +95,31 @@ case "$echoice" in
 		break
 		;;
 	3 )
+		export CROSS_COMPILE=${HOME}/android/uberbuild/out/aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-
+		TC="UBER6.0"
+		echo
+		echo "Using UBERTC 6.0"
+		break
+		;;
+	4 )
 		export CROSS_COMPILE=${HOME}/android/linarobuild/out/aarch64-linux-android-4.9-kernel/bin/aarch64-linux-android-
 		TC="LINARO4.9"
 		echo
 		echo "Using Linaro 4.9"
 		break
 		;;
-	4 )
+	5 )
 		export CROSS_COMPILE=${HOME}/android/linarobuild/out/aarch64-linux-android-5.3-kernel/bin/aarch64-linux-android-
 		TC="LINARO5.3"
 		echo
 		echo "Using Linaro 5.3"
 		break
 		;;
-	5 )
-		export CROSS_COMPILE=${HOME}/android/uberbuild/out/aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-
-		TC="UBER6.0"
+	6 )
+		export CROSS_COMPILE=${HOME}/android/linarobuild/out/aarch64-linux-android-6.0-kernel/bin/aarch64-linux-android-
+		TC="LINARO6.0"
 		echo
-		echo "Using UBERTC 6.0"
+		echo "Using Linaro 6.0"
 		break
 		;;
 	* )
